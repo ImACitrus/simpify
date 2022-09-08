@@ -9,9 +9,9 @@ function lib:Initialize(Name, SavingFolder)
 	})
 
 	function content:Tab(name)
-		local content = {}
+		local tab_content = {}
 		local tab = win:Tab(name)
-		function content:Section(name)
+		function tab_content:Section(name)
 			local section = tab:Section(name)
 			local newContent = {}
 			function newContent:Slider(name: string, properties: {min: number, def: number, max: number, increment: number?}, callback:(IntVal: number)->())
@@ -45,7 +45,7 @@ function lib:Initialize(Name, SavingFolder)
 			end
 			return newContent
 		end
-		return content
+		return tab_content
 	end
 end
 
