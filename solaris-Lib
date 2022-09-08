@@ -14,16 +14,16 @@ function lib:Initialize(Name, SavingFolder)
 		function tab_content:Section(name)
 			local section = tab:Section(name)
 			local newContent = {}
-			function newContent:Slider(name: string, properties: {min: number, def: number, max: number, increment: number?}, callback:(IntVal: number)->())
+			function newContent:Slider(name, properties, callback)
 				section:Slider(name, properties.def, properties.max, properties.min, properties.increment or 1, "", callback)
 			end
-			function newContent:Toggle(name: string, properties: {Toggle: boolean}, callback:(boolVal: boolean)->())
+			function newContent:Toggle(name, properties, callback)
 				section:Toggle(name, properties.Toggle, "", callback)
 			end
-			function newContent:Button(name: string, callback:()->())
+			function newContent:Button(name, callback)
 				section:Button(name, callback)
 			end
-			function newContent:Dropdown(name: string, Array: {}, defVal: string, callback:(strVal)->())
+			function newContent:Dropdown(name, Array, defVal, callback)
 				local tabl = {}
 				local dropdown = section:Dropdown(name, Array, def, "", callback)
 				function tabl:Refresh(newArray: {}, delete: boolean)
@@ -31,16 +31,16 @@ function lib:Initialize(Name, SavingFolder)
 				end
 				return tabl
 			end
-			function newContent:Colorpicker(name: string, defColor: Color3, callback:(colorVal)->())
+			function newContent:Colorpicker(name, defColor, callback)
 				section:Colorpicker(name, defColor, "", callback)
 			end
-			function newContent:Textbox(name: string, disappear: boolean, callback:(strVal)->())
+			function newContent:Textbox(name, disappear, callback)
 				section:Textbox(name, disappear, "", callback)
 			end
-			function newContent:Bind(name: string, defBind: Enum.InputObject, hold: boolean, callback:(keycodeVal)->())
+			function newContent:Bind(name, defBind, hold, callback)
 				section:Bind(name, defBind, hold, "", callback)
 			end
-			function newContent:Label(name: string)
+			function newContent:Label(name)
 				section:Label(name)
 			end
 			return newContent
