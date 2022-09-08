@@ -26,7 +26,7 @@ function lib:Initialize(Name, SavingFolder)
 			function newContent:Dropdown(name, Array, defVal, callback)
 				local tabl = {}
 				local dropdown = section:Dropdown(name, Array, def, "", callback)
-				function tabl:Refresh(newArray: {}, delete: boolean)
+				function tabl:Refresh(newArray, delete)
 					dropdown:Refresh(newArray, delete)
 				end
 				return tabl
