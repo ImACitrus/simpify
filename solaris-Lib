@@ -1,6 +1,6 @@
 local lib = {}
 
-function lib:Initialize(Name, SavingFolder, callback: (hasInitialized: boolean)->())
+function lib:Initialize(Name, SavingFolder)
 	local content = {}
 	local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/UI-Librarys/main/SolarisLib"))()
 	local win = lib:New({
