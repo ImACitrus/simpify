@@ -1,0 +1,52 @@
+local lib = {}
+
+function lib:Initialize(Name, SavingFolder, callback: (hasInitialized: boolean)->())
+	local content = {}
+	local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/UI-Librarys/main/SolarisLib"))()
+	local win = lib:New({
+		Name = Name or "Name",
+		FolderToSave = SavingFolder or "hub_settings-def"
+	})
+
+	function content:Tab(name)
+		local content = {}
+		local tab = win:Tab(name)
+		function content:Section(name)
+			local section = tab:Section(name)
+			local newContent = {}
+			function newContent:Slider(name: string, properties: {min: number, def: number, max: number, increment: number?}, callback:(IntVal: number)->())
+				section:Slider(name, properties.def, properties.max, properties.min, properties.increment or 1, "", callback)
+			end
+			function newContent:Toggle(name: string, properties: {Toggle: boolean}, callback:(boolVal: boolean)->())
+				section:Toggle(name, properties.Toggle, "", callback)
+			end
+			function newContent:Button(name: string, callback:()->())
+				section:Button(name, callback)
+			end
+			function newContent:Dropdown(name: string, Array: {}, defVal: string, callback:(strVal)->())
+				local tabl = {}
+				local dropdown = section:Dropdown(name, Array, def, "", callback)
+				function tabl:Refresh(newArray: {}, delete: boolean)
+					dropdown:Refresh(newArray, delete)
+				end
+				return tabl
+			end
+			function newContent:Colorpicker(name: string, defColor: Color3, callback:(colorVal)->())
+				section:Colorpicker(name, defColor, "", callback)
+			end
+			function newContent:Textbox(name: string, disappear: boolean, callback:(strVal)->())
+				section:Textbox(name, disappear, "", callback)
+			end
+			function newContent:Bind(name: string, defBind: Enum.InputObject, hold: boolean, callback:(keycodeVal)->())
+				section:Bind(name, defBind, hold, "", callback)
+			end
+			function newContent:Label(name: string)
+				section:Label(name)
+			end
+			return newContent
+		end
+		return content
+	end
+end
+
+return lib
