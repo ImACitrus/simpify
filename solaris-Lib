@@ -47,6 +47,8 @@ function lib:Initialize(Name, SavingFolder)
 		end
 		return tab_content
 	end
+	
+	return content
 end
 
 return lib
